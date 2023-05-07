@@ -1,16 +1,18 @@
 window.onload = () => {
     const messageElement = document.getElementById("message");
+    const previewElement = document.getElementById("preview");
 
-    async function copyToClipboard(text) {
+    async function copyToClipboard(urlText) {
         try {
-            await navigator.clipboard.writeText(text).then(
+            await navigator.clipboard.writeText(urlText).then(
                 () => {
                     /* success */
-                    var text = 'クリップボードに認証コードをコピーしました\nこのコードをワールドで入力して下さい ';
+                    let text = 'クリップボードに認証コードをコピーしました\nこのコードをワールドで入力して下さい ';
                     if (lang != 'ja') {
                         text = 'Copied the authentication code to the clipboard\nPlease enter this code in the world';
                     }
                     messageElement.innerText = text;
+                    previewElement.innerText = urlText;
                 }
             );
         } catch (error) {
@@ -27,5 +29,6 @@ window.onload = () => {
         if (lang != 'ja') {
             text = 'Error!!';
         }
+        messageElement.innerText = text;
     }
 }
